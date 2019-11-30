@@ -4,6 +4,7 @@
 #include "V_Tree.h"
 #include "ManagerTree.h"
 #include "new_vehiicle_query_form.h"
+#include "Vertex.h"
 namespace E14046583_Final {
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -36,12 +37,18 @@ namespace E14046583_Final {
 	private:
 		System::Windows::Forms::Timer^ objectTimer;
 		int position;
-		Vehicle *vechicle;
-		ActiveObject *object;
+		vector<Vertex> *vertex_list;
+		vector<Route> *route_list;
+
 	private: System::Windows::Forms::ListBox^  object_list;
 	private: System::Windows::Forms::Button^  add_vehicle_btn;
 			 VTree *root;
-
+	
+			 void load_vertex();
+			 void draw_vertex();
+			 void load_route();
+			 void draw_route();
+			
 		void buildTree();
 		void attachVehicle();
 		void update_object_list();
@@ -70,17 +77,19 @@ namespace E14046583_Final {
 			// map_area
 			// 
 			this->map_area->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->map_area->Location = System::Drawing::Point(27, 38);
+			this->map_area->Location = System::Drawing::Point(54, 19);
+			this->map_area->Margin = System::Windows::Forms::Padding(1, 2, 1, 2);
 			this->map_area->Name = L"map_area";
-			this->map_area->Size = System::Drawing::Size(1246, 870);
+			this->map_area->Size = System::Drawing::Size(608, 689);
 			this->map_area->TabIndex = 0;
 			this->map_area->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MapForm::map_area_Paint);
 			// 
 			// timer_btn
 			// 
-			this->timer_btn->Location = System::Drawing::Point(1321, 613);
+			this->timer_btn->Location = System::Drawing::Point(847, 325);
+			this->timer_btn->Margin = System::Windows::Forms::Padding(1, 2, 1, 2);
 			this->timer_btn->Name = L"timer_btn";
-			this->timer_btn->Size = System::Drawing::Size(313, 67);
+			this->timer_btn->Size = System::Drawing::Size(144, 34);
 			this->timer_btn->TabIndex = 1;
 			this->timer_btn->Text = L"update list";
 			this->timer_btn->UseVisualStyleBackColor = true;
@@ -89,17 +98,19 @@ namespace E14046583_Final {
 			// object_list
 			// 
 			this->object_list->FormattingEnabled = true;
-			this->object_list->ItemHeight = 24;
-			this->object_list->Location = System::Drawing::Point(1321, 38);
+			this->object_list->ItemHeight = 12;
+			this->object_list->Location = System::Drawing::Point(847, 19);
+			this->object_list->Margin = System::Windows::Forms::Padding(1, 2, 1, 2);
 			this->object_list->Name = L"object_list";
-			this->object_list->Size = System::Drawing::Size(313, 508);
+			this->object_list->Size = System::Drawing::Size(147, 256);
 			this->object_list->TabIndex = 2;
 			// 
 			// add_vehicle_btn
 			// 
-			this->add_vehicle_btn->Location = System::Drawing::Point(1321, 750);
+			this->add_vehicle_btn->Location = System::Drawing::Point(847, 395);
+			this->add_vehicle_btn->Margin = System::Windows::Forms::Padding(1, 2, 1, 2);
 			this->add_vehicle_btn->Name = L"add_vehicle_btn";
-			this->add_vehicle_btn->Size = System::Drawing::Size(313, 72);
+			this->add_vehicle_btn->Size = System::Drawing::Size(144, 36);
 			this->add_vehicle_btn->TabIndex = 3;
 			this->add_vehicle_btn->Text = L"add vehicle";
 			this->add_vehicle_btn->UseVisualStyleBackColor = true;
@@ -107,14 +118,15 @@ namespace E14046583_Final {
 			// 
 			// MapForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(13, 24);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSize = true;
-			this->ClientSize = System::Drawing::Size(1908, 965);
+			this->ClientSize = System::Drawing::Size(1087, 729);
 			this->Controls->Add(this->add_vehicle_btn);
 			this->Controls->Add(this->object_list);
 			this->Controls->Add(this->timer_btn);
 			this->Controls->Add(this->map_area);
+			this->Margin = System::Windows::Forms::Padding(1, 2, 1, 2);
 			this->Name = L"MapForm";
 			this->Text = L"MapForm";
 			this->ResumeLayout(false);

@@ -7,7 +7,7 @@
 #define RIGHT_SIDE 1
 #include "Vehicle.h"
 #include "distanceMatrix.h"
-#include "vertex.h"
+//#include "vertex.h"
 #include <algorithm>
 #include <iostream>
 #include <stdlib.h>

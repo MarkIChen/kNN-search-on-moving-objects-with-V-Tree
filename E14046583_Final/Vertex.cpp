@@ -2,7 +2,7 @@
 
 Vertex::Vertex() : index(0), posX(0), posY(0) {};
 Vertex::Vertex(int index, float posX, float posY)
-	: index(index), posX(posX), posY(posX) {};
+	: index(index), posX(posX), posY(posY) {};
 
 std::istream &operator >> (std::istream &is, Vertex &vertex) {
 	is >> vertex.index;

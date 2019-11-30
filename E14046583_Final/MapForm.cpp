@@ -2,11 +2,12 @@
 #include <iostream>
 #include <vector>
 #include "MatrixDistanceDefaultValue.h"
+#include<fstream>
 
 using namespace E14046583_Final;
 using namespace std;
 
-MapForm::MapForm(void) {
+MapForm::MapForm(void) : vertex_list(nullptr), route_list(nullptr) {
 	InitializeComponent();
 	objectTimer = gcnew System::Windows::Forms::Timer();
 	objectTimer->Interval = 500;
@@ -15,9 +16,8 @@ MapForm::MapForm(void) {
 	position = 0;
 	buildTree();
 	attachVehicle();
-	//test
-	vechicle = new Vehicle(1, 4);
-	object = new ActiveObject(*vechicle, 2);
+	load_vertex();
+	load_route();
 }
 
 void MapForm::buildTree() {
@@ -50,8 +50,6 @@ void MapForm::buildTree() {
 	root->setBoundaryVertexList(boundaryVertexIndex, boundaryVertexListSize);
 
 }
-
-
 
 void MapForm::attachVehicle() {
 	vector<Vehicle> vehicleList;
@@ -87,10 +85,11 @@ System::Void MapForm::map_area_Paint(System::Object^  sender, System::Windows::F
 		vector<ActiveObject> objectList = root->getActiveObjectListofIndex(i);
 		for (int j = 0;j < objectList.size();j++) {
 			int x = objectList.at(j).getDistance();
-			g->FillEllipse(Brushes::Red, Rectangle(x, 50*i+20*j, 10, 10));
-		
+			//g->FillEllipse(Brushes::Red, Rectangle(x, 50*i+20*j, 10, 10));
 		}
 	}
+	draw_vertex();
+	draw_route();
 }
 
 void MapForm::TimerEventProcessor(Object^ myObject, System::EventArgs^ myEventArgs) {
@@ -126,4 +125,63 @@ System::Void MapForm::add_vehicle_btn_Click(System::Object^  sender, System::Eve
 	}
 	// update the object list
 	update_object_list();
+}
+
+void MapForm::load_vertex() {
+	vertex_list = new vector<Vertex>(0);
+	ifstream pFile("vertex.txt");
+	if (pFile.is_open())
+	{
+		int vertex_index;
+		float pos_x, pos_y;
+		while (! pFile.eof()) {
+			pFile >> vertex_index;
+			pFile >> pos_x;
+			pFile >> pos_y;
+			Vertex new_vertex(vertex_index, pos_x, pos_y);
+			vertex_list->push_back(new_vertex);
+		}
+		
+	}
+	pFile.close();
+}
+
+void MapForm::draw_vertex() {
+	Graphics^ g = this->map_area->CreateGraphics();
+	if (vertex_list == nullptr) return;
+	for (int i = 0;i < vertex_list->size();i++) {
+		g->FillRectangle(Brushes::Blue, Rectangle(vertex_list->at(i).getPosX() * 30 - 5, vertex_list->at(i).getPosY() * 30 - 5, 10, 10));
+	}
+
+
+}
+
+void  MapForm::load_route() {
+	route_list = new vector<Route>(0);
+	ifstream pFile("route.txt");
+	if (pFile.is_open())
+	{
+		int source, destination;
+		while (!pFile.eof()) {
+			pFile >> source;
+			pFile >> destination;
+			Route new_route(source, destination);
+			route_list->push_back(new_route);
+		}
+	}
+	pFile.close();
+	
+}
+
+
+void  MapForm::draw_route() {
+	Graphics^ g = this->map_area->CreateGraphics();
+	if (route_list == nullptr) return;
+	for (int i = 0;i < route_list->size();i++) {
+		int source = route_list->at(i).getSource();
+		int des = route_list->at(i).getDestinaiton();
+		PointF point1(vertex_list->at(source-1).getPosX()*30, vertex_list->at(source-1).getPosY()*30);
+		PointF point2(vertex_list->at(des-1).getPosX()*30, vertex_list->at(des-1).getPosY()*30);
+		g->DrawLine(Pens::Black, point1, point2);
+	}
 }
