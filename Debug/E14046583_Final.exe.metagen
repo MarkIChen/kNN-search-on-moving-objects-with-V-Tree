@@ -1,3 +1,4 @@
+  E14046583_Final.kNN_search_form.resources - Embedded, ContainedInManifestFile, 
   E14046583_Final.MapForm.resources - Embedded, ContainedInManifestFile, 
   E14046583_Final.new_vehiicle_query_form.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
@@ -15,6 +16,12 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
+Class E14046583_Final.kNN_search_form: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Int32 search_center_vertex_index : Public
+    Int32 k : Public
 Class E14046583_Final.new_vehiicle_query_form: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

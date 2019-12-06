@@ -34,7 +34,7 @@ public:
 	void setNearstActiveVertexList(const vector<ActiveObject> &newList) {
 		activeObjectList = newList;
 	}
-	void moveObject(int);
+	void moveObject(float);
 	bool pushObject(ActiveObject &);
 	const vector<ActiveObject> getActiveObjectList() const { return activeObjectList; }
 	void showActiveObjecList() const;
@@ -43,7 +43,8 @@ public:
 struct GNAVData {
 	int vertexIndex;
 	float shortestDistance;
-	GNAVData(int vertexIndex = -1, float shortestDistance = floatMax) :vertexIndex(vertexIndex), shortestDistance(shortestDistance) {}
+	int object_index;
+	GNAVData(int vertexIndex = -1, float shortestDistance = floatMax, int object_index = -1) :vertexIndex(vertexIndex), shortestDistance(shortestDistance), object_index(object_index) {}
 };
 
 class VTree {
@@ -80,7 +81,7 @@ public:
 	bool setLeftNode(const VTree &);
 	bool setRightNode(const VTree &);
 
-	bool insertObject(const Vehicle &, int dis = -1);
+	bool insertObject(const Vehicle &, float dis = -1, float maxDis =-1);
 	bool deleteObject(const Vehicle &);
 
 	bool setBoundaryVertexList(int *, int);
@@ -91,7 +92,7 @@ public:
 	static int getLayer(const VTree &);
 	const vector<int> getActiveVertexList(); // only for leaf
 	const vector<ActiveObject> getActiveObjectListofIndex(int vertexIndex)const;
-	void moveObject(int);
+	void moveObject(float);
 
 	float SPDist(int, int) const;
 

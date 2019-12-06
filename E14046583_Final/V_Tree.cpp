@@ -18,7 +18,7 @@ LNAV::LNAV()
 	: distance(floatMax - 1), nearestActiveVertex(-1), isBoundaryVertex(false) {
 }
 
-void LNAV::moveObject(int delta) {
+void LNAV::moveObject(float delta) {
 	for (int i = 0;i < activeObjectList.size();i++) {
 		activeObjectList[i].increaseDistance(delta);
 	}
@@ -97,10 +97,10 @@ bool VTree::setRightNode(const VTree &newRightNode) {
 	return true;
 }
 
-bool VTree::insertObject(const Vehicle &newVehicle, int dis) {
+bool VTree::insertObject(const Vehicle &newVehicle, float dis, float maxDis) {
 	int insertVertex = newVehicle.getDesVertexIndex();
 	int layer = getLayer(*this);
-
+	if (maxDis == -1) maxDis = getDistance(newVehicle.getEdgeVertexIndexFirst(), newVehicle.getEdgeVertexIndexSecond());
 	if (layer == 0) {
 		int arrIndex = distanceMatrix.getIndex(insertVertex);
 
@@ -109,7 +109,7 @@ bool VTree::insertObject(const Vehicle &newVehicle, int dis) {
 			return false;
 		}
 
-		ActiveObject object(newVehicle, dis);
+		ActiveObject object(newVehicle, dis, maxDis);
 
 		LNAVList[arrIndex].pushObject(object);
 		updateNodeLNAV();
@@ -121,7 +121,7 @@ bool VTree::insertObject(const Vehicle &newVehicle, int dis) {
 		: leftNode;
 	int ranDis = dis;
 	if (dis<0) {
-		srand(time(0));
+		//srand(time(0));
 		int shortDis = int(getDistance(newVehicle.getEdgeVertexIndexFirst(),
 			newVehicle.getEdgeVertexIndexSecond()));
 		if (shortDis == -1) {
@@ -129,7 +129,7 @@ bool VTree::insertObject(const Vehicle &newVehicle, int dis) {
 		}
 		ranDis = rand() % shortDis;
 	}
-	if (target->insertObject(newVehicle, ranDis) == true) {
+	if (target->insertObject(newVehicle, ranDis+0.2, maxDis) == true) {
 		updateNodeLNAV();
 		return true;
 	}
@@ -137,7 +137,6 @@ bool VTree::insertObject(const Vehicle &newVehicle, int dis) {
 }
 
 float VTree::getDistance(int vertexA, int vertexB) const {
-
 	float dis = distanceMatrix.getValue(vertexA, vertexB);
 	if (getLayer(*this) == 0 && dis == -1) {
 		return -1;
@@ -449,7 +448,7 @@ vector<GNAVData> VTree::knn(int vertexIndex, int k) const {
 	for (int i = 0;i<activeObjectList.size();i++) {
 		float candidate = SPDist(currentNAV.vertexIndex, vertexIndex) + activeObjectList[i].getDistance();
 		if (candidate < queue[k - 1].shortestDistance) {
-			queue.insert(queue.begin(), GNAVData(currentNAV.vertexIndex, candidate));
+			queue.insert(queue.begin(), GNAVData(currentNAV.vertexIndex, candidate, activeObjectList[i].getObjectVehicle().getVehicleIndex()));
 			queue.erase(queue.end() - 1);
 		}
 		// sort
@@ -466,7 +465,7 @@ vector<GNAVData> VTree::knn(int vertexIndex, int k) const {
 		for (int i = 0;i<activeObjectList.size();i++) {
 			float candidate = SPDist(currentNAV.vertexIndex, vertexIndex) + activeObjectList[i].getDistance();
 			if (candidate < queue[k - 1].shortestDistance) {
-				queue.insert(queue.begin(), GNAVData(currentNAV.vertexIndex, candidate));
+				queue.insert(queue.begin(), GNAVData(currentNAV.vertexIndex, candidate, activeObjectList[i].getObjectVehicle().getVehicleIndex()));
 				queue.erase(queue.end() - 1);
 			}
 			// sort
@@ -476,7 +475,8 @@ vector<GNAVData> VTree::knn(int vertexIndex, int k) const {
 	return queue;
 }
 
-void VTree::moveObject(int delta) {
+void VTree::moveObject(float delta) {
+	
 	if (getLayer(*this) == 0) {
 		for (int i = 0; i < LNAVList.size();i++) {
 			LNAVList[i].moveObject(delta);

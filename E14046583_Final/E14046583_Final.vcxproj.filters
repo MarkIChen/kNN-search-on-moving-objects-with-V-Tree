@@ -51,6 +51,9 @@
     <ClCompile Include="MapForm.cpp">
       <Filter>原始程式檔</Filter>
     </ClCompile>
+    <ClCompile Include="kNN_search_form.cpp">
+      <Filter>標頭檔</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapForm.h">
@@ -80,12 +83,18 @@
     <ClInclude Include="new_vehiicle_query_form.h">
       <Filter>原始程式檔</Filter>
     </ClInclude>
+    <ClInclude Include="kNN_search_form.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MapForm.resx">
       <Filter>資源檔</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="new_vehiicle_query_form.resx">
+      <Filter>資源檔</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kNN_search_form.resx">
       <Filter>資源檔</Filter>
     </EmbeddedResource>
   </ItemGroup>

@@ -10,14 +10,19 @@ using namespace std;
 MapForm::MapForm(void) : vertex_list(nullptr), route_list(nullptr) {
 	InitializeComponent();
 	objectTimer = gcnew System::Windows::Forms::Timer();
-	objectTimer->Interval = 500;
+	objectTimer->Interval = 200;
 	objectTimer->Start();
 	objectTimer->Tick += gcnew EventHandler(this, &MapForm::TimerEventProcessor);
 	position = 0;
+	selected_vehicle = -1;
+	search_center_vertex_index = -1;
+	k = -1;
 	buildTree();
 	attachVehicle();
 	load_vertex();
 	load_route();
+	update_object_list();
+	knn_searched_list = new vector<GNAVData>();
 }
 
 void MapForm::buildTree() {
@@ -64,7 +69,6 @@ void MapForm::attachVehicle() {
 	vehicleList.push_back(Vehicle(2, 9));
 	vehicleList.push_back(Vehicle(6, 13));
 	vehicleList.push_back(Vehicle(3, 13));
-	vehicleList.push_back(Vehicle(6, 8));
 	vehicleList.push_back(Vehicle(9, 11));
 	vehicleList.push_back(Vehicle(16, 15));
 	
@@ -73,30 +77,23 @@ void MapForm::attachVehicle() {
 			cout << "insert an object failed" << endl;
 		}
 	}
-	//MessageBox::Show(""+ vehicleList.size());
 }
 
 System::Void MapForm::map_area_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
 	Graphics^ g = this->map_area->CreateGraphics();
 	if (VTree::getLayer(*root) != 2) return;
-	int node_number = pow(2, VTree::getLayer(*root)) * VERTEX_PER_NODE;
-
-	for (int i = 1;i <= node_number;i++) {
-		vector<ActiveObject> objectList = root->getActiveObjectListofIndex(i);
-		for (int j = 0;j < objectList.size();j++) {
-			int x = objectList.at(j).getDistance();
-			//g->FillEllipse(Brushes::Red, Rectangle(x, 50*i+20*j, 10, 10));
-		}
-	}
+	
+	draw_vehicle();
 	draw_vertex();
 	draw_route();
 }
 
 void MapForm::TimerEventProcessor(Object^ myObject, System::EventArgs^ myEventArgs) {
-	root->moveObject(10);
+	root->moveObject(0.05);
 	// update object list
-	
 	map_area->Invalidate();
+	update_knn_search_listbox();
+	update_knn_result();
 }
 
 void MapForm::update_object_list() {
@@ -104,6 +101,14 @@ void MapForm::update_object_list() {
 	vector<ActiveObject> all_object_list = Algorithm::getAllActiveObject(*root);
 	for (int i = 0;i < all_object_list.size();i++) {
 		object_list->Items->Add("Vehicle " + all_object_list[i].getObjectVehicle().getVehicleIndex());
+	}
+}
+
+void  MapForm::update_knn_search_listbox() {
+	knn_search_listbox->Items->Clear();
+	for (int i = 0;i < knn_searched_list->size();i++) {
+		knn_search_listbox->Items->Add("Vehicle " + knn_searched_list->at(i).object_index);
+
 	}
 }
 
@@ -125,6 +130,23 @@ System::Void MapForm::add_vehicle_btn_Click(System::Object^  sender, System::Eve
 	}
 	// update the object list
 	update_object_list();
+}
+
+System::Void MapForm::kNN_search_btn_Click(System::Object^  sender, System::EventArgs^  e) {
+	kNN_search_form ^search_form = gcnew kNN_search_form();
+	search_form->ShowDialog();
+	if (search_form->DialogResult == System::Windows::Forms::DialogResult::OK) {
+		search_center_vertex_index = search_form->search_center_vertex_index;
+		k = search_form->k;
+		update_knn_result();
+	}
+}
+
+void MapForm::update_knn_result() {
+	if (search_center_vertex_index != -1 && k != -1) {
+		delete knn_searched_list;
+		knn_searched_list = new vector<GNAVData>(root->knn(search_center_vertex_index, k));
+	}
 }
 
 void MapForm::load_vertex() {
@@ -150,9 +172,18 @@ void MapForm::draw_vertex() {
 	Graphics^ g = this->map_area->CreateGraphics();
 	if (vertex_list == nullptr) return;
 	for (int i = 0;i < vertex_list->size();i++) {
-		g->FillRectangle(Brushes::Blue, Rectangle(vertex_list->at(i).getPosX() * 30 - 5, vertex_list->at(i).getPosY() * 30 - 5, 10, 10));
+		if (search_center_vertex_index == vertex_list->at(i).getVertexIndex()) {
+			g->FillRectangle(Brushes::Cyan, Rectangle(vertex_list->at(i).getPosX() * 30 - 5, vertex_list->at(i).getPosY() * 30 - 5, 10, 10));
+		}
+		else {
+			g->FillRectangle(Brushes::Blue, Rectangle(vertex_list->at(i).getPosX() * 30 - 5, vertex_list->at(i).getPosY() * 30 - 5, 10, 10));
+			for (int p = 0;p < knn_searched_list->size();p++) {
+				if (knn_searched_list->at(p).vertexIndex == vertex_list->at(i).getVertexIndex()) {
+					g->FillRectangle(Brushes::Pink, Rectangle(vertex_list->at(i).getPosX() * 30 - 5, vertex_list->at(i).getPosY() * 30 - 5, 10, 10));
+				}
+			}
+		}
 	}
-
 
 }
 
@@ -173,7 +204,6 @@ void  MapForm::load_route() {
 	
 }
 
-
 void  MapForm::draw_route() {
 	Graphics^ g = this->map_area->CreateGraphics();
 	if (route_list == nullptr) return;
@@ -184,4 +214,44 @@ void  MapForm::draw_route() {
 		PointF point2(vertex_list->at(des-1).getPosX()*30, vertex_list->at(des-1).getPosY()*30);
 		g->DrawLine(Pens::Black, point1, point2);
 	}
+}
+
+void MapForm::draw_vehicle() {
+	Graphics^ g = this->map_area->CreateGraphics();
+	int node_number = pow(2, VTree::getLayer(*root)) * VERTEX_PER_NODE;
+
+	for (int i = 1;i <= node_number;i++) {
+		vector<ActiveObject> objectList = root->getActiveObjectListofIndex(i);
+		for (int j = 0;j < objectList.size();j++) {
+			float d = objectList.at(j).getDistance();
+			float max_dis = objectList.at(j).getMaxDistance();
+			int source = objectList.at(j).getObjectVehicle().getEdgeVertexIndexFirst();
+			int des = objectList.at(j).getObjectVehicle().getEdgeVertexIndexSecond();
+
+			float x = ((max_dis-d) / max_dis)*(vertex_list->at(des - 1).getPosX() - vertex_list->at(source - 1).getPosX())+ vertex_list->at(source - 1).getPosX();
+			float y = ((max_dis - d) / max_dis)*(vertex_list->at(des - 1).getPosY() - vertex_list->at(source - 1).getPosY()) + vertex_list->at(source - 1).getPosY();
+			// selected vehicle
+			g->FillEllipse(Brushes::Red, Rectangle(x*30-5, y*30-5, 10, 10));
+			if (selected_vehicle == objectList.at(j).getObjectVehicle().getVehicleIndex()) {
+				Pen ^pen = gcnew Pen(Brushes::Green);
+				pen->Width = 4.0F;
+				g->DrawEllipse(pen, Rectangle(x * 30 - 10, y * 30 - 10, 20, 20));
+			}
+			// knn object
+			for (int p = 0;p < knn_searched_list->size();p++) {
+				if (knn_searched_list->at(p).object_index == objectList.at(j).getObjectVehicle().getVehicleIndex()) {
+					Pen ^pen = gcnew Pen(Brushes::Green);
+					pen->Width = 4.0F;
+					g->DrawEllipse(pen, Rectangle(x * 30 - 10, y * 30 - 10, 20, 20));
+				}
+			}
+		}
+	}
+
+}
+
+System::Void MapForm::object_list_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	String ^i = object_list->Items[object_list->SelectedIndex]->ToString();
+	cli::array<String^>^ words = i->Split(' ');
+	selected_vehicle = Int32::Parse(words[1]);
 }
