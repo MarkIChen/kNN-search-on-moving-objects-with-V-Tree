@@ -3,7 +3,19 @@
 <p>In the transportation system, k nearest neighbor is a critical technique to find the near objects. For instance, Uber utilizes kNN to help users find sharing vehicles. In this program, I create a data structure, called V-Tree to implement kNN search, and use object-oriented programming to model the nodes of the tree. The way of constructing the tree, and algorithms are based on a paper(in the reference) from Tsinghua Uinversity, and the following definition is extracted from the paper. If you want to understand deeper how the algorithms work, please study the whole paper.</p>
 
 ## Content
-[TOC]
+- [How to build a V-Tree?](#how-to-build-a-v-tree-)
+  * [Find the subgrapgs of the V-Tree](#find-the-subgrapgs-of-the-v-tree)
+  * [Create Distance Matrix for each node](#create-distance-matrix-for-each-node)
+  * [Create LNAV Lists, and active object lists](#create-lnav-lists--and-active-object-lists)
+- [Algorithms](#algorithms)
+  * [Boundary Vertex](#boundary-vertex)
+  * [SPDist: shortest path distance](#spdist--shortest-path-distance)
+  * [Updating V-Tree](#updating-v-tree)
+  * [gnav, nnav](#gnav--nnav)
+  * [kNN](#knn)
+- [Implement kNN search with GUI](#implement-knn-search-with-gui)
+- [Discussion](#discussion)
+- [Reference](#reference)
 
 
 ## How to build a V-Tree?
