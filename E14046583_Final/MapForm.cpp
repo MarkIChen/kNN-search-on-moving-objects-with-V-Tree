@@ -23,6 +23,7 @@ MapForm::MapForm(void) : vertex_list(nullptr), route_list(nullptr) {
 	load_route();
 	update_object_list();
 	knn_searched_list = new vector<GNAVData>();
+	draw_label();
 }
 
 void MapForm::buildTree() {
@@ -112,11 +113,6 @@ void  MapForm::update_knn_search_listbox() {
 	}
 }
 
-System::Void MapForm::timer_btn_Click(System::Object^  sender, System::EventArgs^  e) {
-	update_object_list();
-	map_area->Invalidate();
-}
-
 System::Void MapForm::add_vehicle_btn_Click(System::Object^  sender, System::EventArgs^  e) {
 	//pop up new form 
 	new_vehiicle_query_form ^query_form = gcnew new_vehiicle_query_form();
@@ -172,6 +168,13 @@ void MapForm::draw_vertex() {
 	Graphics^ g = this->map_area->CreateGraphics();
 	if (vertex_list == nullptr) return;
 	for (int i = 0;i < vertex_list->size();i++) {
+
+		/*Label ^namelabel = gcnew Label();
+		namelabel->Location = System::Drawing::Point(vertex_list->at(i).getPosX() * 30 - 30, vertex_list->at(i).getPosY() * 30 );
+		namelabel->Text = "t";
+		namelabel->AutoSize = true;
+		this->map_area->Controls->Add(namelabel);*/
+
 		if (search_center_vertex_index == vertex_list->at(i).getVertexIndex()) {
 			g->FillRectangle(Brushes::Cyan, Rectangle(vertex_list->at(i).getPosX() * 30 - 5, vertex_list->at(i).getPosY() * 30 - 5, 10, 10));
 		}
@@ -248,6 +251,18 @@ void MapForm::draw_vehicle() {
 		}
 	}
 
+}
+
+void MapForm::draw_label() {
+	for (int i = 0; i < vertex_list->size(); i++) {
+
+		Label ^namelabel = gcnew Label();
+		namelabel->Location = System::Drawing::Point(vertex_list->at(i).getPosX() * 30 - 20, vertex_list->at(i).getPosY() * 30);
+		namelabel->Text = ""+(i+1);
+		namelabel->AutoSize = true;
+		this->map_area->Controls->Add(namelabel);
+
+	}
 }
 
 System::Void MapForm::object_list_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
