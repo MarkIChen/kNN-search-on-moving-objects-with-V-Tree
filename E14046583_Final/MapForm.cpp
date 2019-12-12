@@ -169,12 +169,6 @@ void MapForm::draw_vertex() {
 	if (vertex_list == nullptr) return;
 	for (int i = 0;i < vertex_list->size();i++) {
 
-		/*Label ^namelabel = gcnew Label();
-		namelabel->Location = System::Drawing::Point(vertex_list->at(i).getPosX() * 30 - 30, vertex_list->at(i).getPosY() * 30 );
-		namelabel->Text = "t";
-		namelabel->AutoSize = true;
-		this->map_area->Controls->Add(namelabel);*/
-
 		if (search_center_vertex_index == vertex_list->at(i).getVertexIndex()) {
 			g->FillRectangle(Brushes::Cyan, Rectangle(vertex_list->at(i).getPosX() * 30 - 5, vertex_list->at(i).getPosY() * 30 - 5, 10, 10));
 		}
@@ -236,7 +230,7 @@ void MapForm::draw_vehicle() {
 			// selected vehicle
 			g->FillEllipse(Brushes::Red, Rectangle(x*30-5, y*30-5, 10, 10));
 			if (selected_vehicle == objectList.at(j).getObjectVehicle().getVehicleIndex()) {
-				Pen ^pen = gcnew Pen(Brushes::Green);
+				Pen ^pen = gcnew Pen(Brushes::BlueViolet);
 				pen->Width = 4.0F;
 				g->DrawEllipse(pen, Rectangle(x * 30 - 10, y * 30 - 10, 20, 20));
 			}
@@ -269,4 +263,8 @@ System::Void MapForm::object_list_SelectedIndexChanged(System::Object^  sender, 
 	String ^i = object_list->Items[object_list->SelectedIndex]->ToString();
 	cli::array<String^>^ words = i->Split(' ');
 	selected_vehicle = Int32::Parse(words[1]);
+}
+
+System::Void MapForm::object_list_Click(System::Object^  sender, System::EventArgs^  e) {
+	selected_vehicle = -1;
 }

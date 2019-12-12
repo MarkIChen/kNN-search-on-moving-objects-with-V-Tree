@@ -1,22 +1,22 @@
 ﻿  MapForm.cpp
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.h(29): warning C4244: '=': 將 'int' 轉換為 'float'，由於類型不同，可能導致資料遺失
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(76): warning C4018: '<': signed/unsigned 不相符
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(93): warning C4305: '引數': 從 'double' 轉換為 'float'，是由較大的類型轉換為較小的類型，可能導致資料遺失
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(103): warning C4018: '<': signed/unsigned 不相符
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(110): warning C4018: '<': signed/unsigned 不相符
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(170): warning C4018: '<': signed/unsigned 不相符
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(179): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(182): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(183): warning C4018: '<': signed/unsigned 不相符
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(185): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(213): warning C4018: '<': signed/unsigned 不相符
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(224): warning C4244: '正在初始化': 將 'double' 轉換為 'int'，由於類型不同，可能導致資料遺失
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(228): warning C4018: '<': signed/unsigned 不相符
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(237): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(241): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(244): warning C4018: '<': signed/unsigned 不相符
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(248): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(257): warning C4018: '<': signed/unsigned 不相符
-y:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(260): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.h(29): warning C4244: '=': 將 'int' 轉換為 'float'，由於類型不同，可能導致資料遺失
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(76): warning C4018: '<': signed/unsigned 不相符
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(93): warning C4305: '引數': 從 'double' 轉換為 'float'，是由較大的類型轉換為較小的類型，可能導致資料遺失
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(103): warning C4018: '<': signed/unsigned 不相符
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(110): warning C4018: '<': signed/unsigned 不相符
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(170): warning C4018: '<': signed/unsigned 不相符
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(173): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(176): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(177): warning C4018: '<': signed/unsigned 不相符
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(179): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(207): warning C4018: '<': signed/unsigned 不相符
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(218): warning C4244: '正在初始化': 將 'double' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(222): warning C4018: '<': signed/unsigned 不相符
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(231): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(235): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(238): warning C4018: '<': signed/unsigned 不相符
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(242): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(251): warning C4018: '<': signed/unsigned 不相符
+z:\google drive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(254): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
   ActiveObject.obj : 發現 MSIL 模組。MSIL 的累加連結已停用。正在執行完整連結
-  E14046583_Final.vcxproj -> Y:\Google Drive\Extended year\OOP\Final_Project\VC\E14046583_Final\Debug\E14046583_Final.exe
+  E14046583_Final.vcxproj -> Z:\Google Drive\Extended year\OOP\Final_Project\VC\E14046583_Final\Debug\E14046583_Final.exe
