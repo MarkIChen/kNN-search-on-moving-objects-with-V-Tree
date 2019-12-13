@@ -80,11 +80,11 @@ public:
 
 	bool setLeftNode(const VTree &);
 	bool setRightNode(const VTree &);
+	bool setBoundaryVertexList(int *, int);
 
 	bool insertObject(const Vehicle &, float dis = -1, float maxDis =-1);
 	bool deleteObject(const Vehicle &);
 
-	bool setBoundaryVertexList(int *, int);
 
 	void showTree() const;
 	const DistanceMatrix &getDistanceMatrix() const { return distanceMatrix; };
@@ -96,11 +96,9 @@ public:
 
 	float SPDist(int, int) const;
 
-
 	const GNAVData gnav(int vertexIndex) const;
 	const GNAVData nnav(int vertexIndex, const GNAVData) const;
 	vector<GNAVData> knn(int vertexIndex, int k) const;
-
 };
 
 bool compareGNAVData(const GNAVData, const GNAVData);

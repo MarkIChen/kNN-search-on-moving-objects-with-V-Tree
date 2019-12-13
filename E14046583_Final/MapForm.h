@@ -88,31 +88,31 @@ namespace E14046583_Final {
 			// map_area
 			// 
 			this->map_area->BackColor = System::Drawing::SystemColors::ActiveBorder;
-			this->map_area->Location = System::Drawing::Point(117, 38);
-			this->map_area->Margin = System::Windows::Forms::Padding(2, 4, 2, 4);
+			this->map_area->Location = System::Drawing::Point(54, 19);
+			this->map_area->Margin = System::Windows::Forms::Padding(1, 2, 1, 2);
 			this->map_area->Name = L"map_area";
-			this->map_area->Size = System::Drawing::Size(1317, 1378);
+			this->map_area->Size = System::Drawing::Size(608, 689);
 			this->map_area->TabIndex = 0;
 			this->map_area->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MapForm::map_area_Paint);
 			// 
 			// object_list
 			// 
 			this->object_list->FormattingEnabled = true;
-			this->object_list->ItemHeight = 24;
-			this->object_list->Location = System::Drawing::Point(1588, 250);
-			this->object_list->Margin = System::Windows::Forms::Padding(2, 4, 2, 4);
+			this->object_list->ItemHeight = 12;
+			this->object_list->Location = System::Drawing::Point(733, 125);
+			this->object_list->Margin = System::Windows::Forms::Padding(1, 2, 1, 2);
 			this->object_list->Name = L"object_list";
-			this->object_list->Size = System::Drawing::Size(314, 556);
+			this->object_list->Size = System::Drawing::Size(147, 280);
 			this->object_list->TabIndex = 2;
 			this->object_list->Click += gcnew System::EventHandler(this, &MapForm::object_list_Click);
 			this->object_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MapForm::object_list_SelectedIndexChanged);
 			// 
 			// add_vehicle_btn
 			// 
-			this->add_vehicle_btn->Location = System::Drawing::Point(1588, 870);
-			this->add_vehicle_btn->Margin = System::Windows::Forms::Padding(2, 4, 2, 4);
+			this->add_vehicle_btn->Location = System::Drawing::Point(733, 435);
+			this->add_vehicle_btn->Margin = System::Windows::Forms::Padding(1, 2, 1, 2);
 			this->add_vehicle_btn->Name = L"add_vehicle_btn";
-			this->add_vehicle_btn->Size = System::Drawing::Size(312, 72);
+			this->add_vehicle_btn->Size = System::Drawing::Size(144, 36);
 			this->add_vehicle_btn->TabIndex = 3;
 			this->add_vehicle_btn->Text = L"add vehicle";
 			this->add_vehicle_btn->UseVisualStyleBackColor = true;
@@ -121,19 +121,17 @@ namespace E14046583_Final {
 			// knn_search_listbox
 			// 
 			this->knn_search_listbox->FormattingEnabled = true;
-			this->knn_search_listbox->ItemHeight = 24;
-			this->knn_search_listbox->Location = System::Drawing::Point(1983, 250);
-			this->knn_search_listbox->Margin = System::Windows::Forms::Padding(7, 6, 7, 6);
+			this->knn_search_listbox->ItemHeight = 12;
+			this->knn_search_listbox->Location = System::Drawing::Point(915, 125);
 			this->knn_search_listbox->Name = L"knn_search_listbox";
-			this->knn_search_listbox->Size = System::Drawing::Size(314, 556);
+			this->knn_search_listbox->Size = System::Drawing::Size(147, 280);
 			this->knn_search_listbox->TabIndex = 4;
 			// 
 			// kNN_search_btn
 			// 
-			this->kNN_search_btn->Location = System::Drawing::Point(1983, 876);
-			this->kNN_search_btn->Margin = System::Windows::Forms::Padding(7, 6, 7, 6);
+			this->kNN_search_btn->Location = System::Drawing::Point(915, 438);
 			this->kNN_search_btn->Name = L"kNN_search_btn";
-			this->kNN_search_btn->Size = System::Drawing::Size(319, 66);
+			this->kNN_search_btn->Size = System::Drawing::Size(147, 33);
 			this->kNN_search_btn->TabIndex = 5;
 			this->kNN_search_btn->Text = L"kNN Search";
 			this->kNN_search_btn->UseVisualStyleBackColor = true;
@@ -141,16 +139,16 @@ namespace E14046583_Final {
 			// 
 			// MapForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(13, 24);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSize = true;
-			this->ClientSize = System::Drawing::Size(2355, 1458);
+			this->ClientSize = System::Drawing::Size(1098, 667);
 			this->Controls->Add(this->kNN_search_btn);
 			this->Controls->Add(this->knn_search_listbox);
 			this->Controls->Add(this->add_vehicle_btn);
 			this->Controls->Add(this->object_list);
 			this->Controls->Add(this->map_area);
-			this->Margin = System::Windows::Forms::Padding(2, 4, 2, 4);
+			this->Margin = System::Windows::Forms::Padding(1, 2, 1, 2);
 			this->Name = L"MapForm";
 			this->Text = L"MapForm";
 			this->ResumeLayout(false);

@@ -387,9 +387,6 @@ const GNAVData VTree::gnav(int vertexIndex) const {
 		if (arrIndex == -1) {
 			cout << "ERROR: This node do not have this vertex." << endl;
 		}
-		// return LNAVList[arrIndex];
-		// GNAVData result = {LNAVList[arrIndex].getnearestActiveVertex(),
-		//                    LNAVList[arrIndex].getDistance()};
 		return GNAVData(LNAVList[arrIndex].getnearestActiveVertex(), LNAVList[arrIndex].getDistance());
 	}
 
@@ -404,7 +401,6 @@ const GNAVData VTree::gnav(int vertexIndex) const {
 			int candidate = SPDist(vertexIndex, sideBoundList[i]) +
 				LNAVList[arrIndex].getDistance();
 			if (candidate < shortDisVertex.shortestDistance) {
-				// GNAVData result = {LNAVList[i].getnearestActiveVertex(), candidate};
 				shortDisVertex = GNAVData(LNAVList[i].getnearestActiveVertex(), candidate);
 			}
 		}
