@@ -113,6 +113,7 @@ Fig.3
 - Fig. 6
 ![](https://i.imgur.com/NbyJupy.png)
 
-
+## UML
+- The UML class diagram is in the repo. Partial unimportant functions are not shown in the diagram.
 ## Reference
 https://ieeexplore.ieee.org/document/7930011
