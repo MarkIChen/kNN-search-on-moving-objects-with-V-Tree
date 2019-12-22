@@ -19,8 +19,9 @@ MapForm::MapForm(void) : vertex_list(nullptr), route_list(nullptr) {
 	k = -1;
 	buildTree();
 	attachVehicle();
-	load_vertex();
-	load_route();
+
+	load_map_info();
+
 	update_object_list();
 	knn_searched_list = new vector<GNAVData>();
 	draw_label();
@@ -145,30 +146,10 @@ void MapForm::update_knn_result() {
 	}
 }
 
-void MapForm::load_vertex() {
-	vertex_list = new vector<Vertex>(0);
-	ifstream pFile("vertex.txt");
-	if (pFile.is_open())
-	{
-		int vertex_index;
-		float pos_x, pos_y;
-		while (! pFile.eof()) {
-			pFile >> vertex_index;
-			pFile >> pos_x;
-			pFile >> pos_y;
-			Vertex new_vertex(vertex_index, pos_x, pos_y);
-			vertex_list->push_back(new_vertex);
-		}
-		
-	}
-	pFile.close();
-}
-
 void MapForm::draw_vertex() {
 	Graphics^ g = this->map_area->CreateGraphics();
 	if (vertex_list == nullptr) return;
 	for (int i = 0;i < vertex_list->size();i++) {
-
 		if (search_center_vertex_index == vertex_list->at(i).getVertexIndex()) {
 			g->FillRectangle(Brushes::Cyan, Rectangle(vertex_list->at(i).getPosX() * 30 - 5, vertex_list->at(i).getPosY() * 30 - 5, 10, 10));
 		}
@@ -184,21 +165,11 @@ void MapForm::draw_vertex() {
 
 }
 
-void  MapForm::load_route() {
-	route_list = new vector<Route>(0);
-	ifstream pFile("route.txt");
-	if (pFile.is_open())
-	{
-		int source, destination;
-		while (!pFile.eof()) {
-			pFile >> source;
-			pFile >> destination;
-			Route new_route(source, destination);
-			route_list->push_back(new_route);
-		}
-	}
-	pFile.close();
-	
+void MapForm::load_map_info() {
+	MapInfo map;
+	route_list = new vector<Route>(map.getRouteList());
+	vertex_list = new vector<Vertex>(map.getVertexList());
+
 }
 
 void  MapForm::draw_route() {
@@ -218,15 +189,19 @@ void MapForm::draw_vehicle() {
 	int node_number = pow(2, VTree::getLayer(*root)) * VERTEX_PER_NODE;
 
 	for (int i = 1;i <= node_number;i++) {
+	
 		vector<ActiveObject> objectList = root->getActiveObjectListofIndex(i);
+
 		for (int j = 0;j < objectList.size();j++) {
 			float d = objectList.at(j).getDistance();
 			float max_dis = objectList.at(j).getMaxDistance();
 			int source = objectList.at(j).getObjectVehicle().getEdgeVertexIndexFirst();
 			int des = objectList.at(j).getObjectVehicle().getEdgeVertexIndexSecond();
 
+			Console::Write("des "+ (vertex_list->at(3).getPosX()));
 			float x = ((max_dis-d) / max_dis)*(vertex_list->at(des - 1).getPosX() - vertex_list->at(source - 1).getPosX())+ vertex_list->at(source - 1).getPosX();
 			float y = ((max_dis - d) / max_dis)*(vertex_list->at(des - 1).getPosY() - vertex_list->at(source - 1).getPosY()) + vertex_list->at(source - 1).getPosY();
+			
 			// selected vehicle
 			g->FillEllipse(Brushes::Red, Rectangle(x*30-5, y*30-5, 10, 10));
 			if (selected_vehicle == objectList.at(j).getObjectVehicle().getVehicleIndex()) {

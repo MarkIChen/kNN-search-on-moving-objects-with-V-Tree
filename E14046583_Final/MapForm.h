@@ -5,6 +5,7 @@
 #include "new_vehiicle_query_form.h"
 #include "kNN_search_form.h"
 #include "Vertex.h"
+
 namespace E14046583_Final {
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -51,9 +52,8 @@ namespace E14046583_Final {
 	private: System::Windows::Forms::Button^  kNN_search_btn;
 			 VTree *root;
 	
-			 void load_vertex();
+			 void load_map_info();
 			 void draw_vertex();
-			 void load_route();
 			 void draw_route();
 			 void draw_vehicle();
 			 void draw_label();

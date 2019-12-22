@@ -54,6 +54,9 @@
     <ClCompile Include="kNN_search_form.cpp">
       <Filter>標頭檔</Filter>
     </ClCompile>
+    <ClCompile Include="MapInfo.cpp">
+      <Filter>原始程式檔\Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapForm.h">
@@ -86,6 +89,9 @@
     <ClInclude Include="kNN_search_form.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
+    <ClInclude Include="map_info.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MapForm.resx">
@@ -97,13 +103,5 @@
     <EmbeddedResource Include="kNN_search_form.resx">
       <Filter>資源檔</Filter>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="route.txt">
-      <Filter>原始程式檔\Module</Filter>
-    </Text>
-    <Text Include="vertex.txt">
-      <Filter>原始程式檔\Module</Filter>
-    </Text>
   </ItemGroup>
 </Project>

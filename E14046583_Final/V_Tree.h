@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <vector>
 #include "ActiveObject.h"
+#include "map_info.h"
 using namespace std;
 
 

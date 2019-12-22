@@ -1,0 +1,39 @@
+﻿  ActiveObject.cpp
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\activeobject.cpp(10): warning C4552: '<': 未使用運算式結果
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\activeobject.cpp(11): warning C4244: '=': 將 'double' 轉換為 'float'，由於類型不同，可能導致資料遺失
+  DistanceMatrix.cpp
+  kNN_search_form.cpp
+  Main.cpp
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.h(29): warning C4244: '=': 將 'int' 轉換為 'float'，由於類型不同，可能導致資料遺失
+  ManagerTree.cpp
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.h(29): warning C4244: '=': 將 'int' 轉換為 'float'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\managertree.cpp(4): warning C4244: '正在初始化': 將 'double' 轉換為 'int'，由於類型不同，可能導致資料遺失
+  MapForm.cpp
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.h(29): warning C4244: '=': 將 'int' 轉換為 'float'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(93): warning C4305: '引數': 從 'double' 轉換為 'float'，是由較大的類型轉換為較小的類型，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(173): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(176): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(179): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(218): warning C4244: '正在初始化': 將 'double' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(231): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(235): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(242): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\mapform.cpp(254): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+  new_vehiicle_query_form.cpp
+  Vehicle.cpp
+  Vertex.cpp
+  V_Tree.cpp
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.h(29): warning C4244: '=': 將 'int' 轉換為 'float'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.cpp(18): warning C4305: '正在初始化': 從 'int' 轉換為 'float'，是由較大的類型轉換為較小的類型，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.cpp(122): warning C4244: '正在初始化': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.cpp(132): warning C4244: '引數': 將 'double' 轉換為 'float'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.cpp(271): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.cpp(290): warning C4244: '引數': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.cpp(297): warning C4244: '正在初始化': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.cpp(304): warning C4244: '正在初始化': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.cpp(343): warning C4305: '正在初始化': 從 'int' 轉換為 'float'，是由較大的類型轉換為較小的類型，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.cpp(401): warning C4244: '正在初始化': 將 'float' 轉換為 'int'，由於類型不同，可能導致資料遺失
+z:\googledrive\extended year\oop\final_project\vc\e14046583_final\e14046583_final\v_tree.cpp(404): warning C4244: '引數': 將 'int' 轉換為 'float'，由於類型不同，可能導致資料遺失
+  正在產生程式碼...
+  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
+  E14046583_Final.vcxproj -> Z:\GoogleDrive\Extended year\OOP\Final_Project\VC\E14046583_Final\x64\Release\E14046583_Final.exe
